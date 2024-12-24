@@ -2,6 +2,13 @@ class heap:
     def __init__(self):
         self.heap = []
     
+    def _insert(self, element):
+        self.heap.append(element)
+        self._siftup(len(self.heap)-1)
+    
+    def _get_min(self):
+        return self.heap[0] if len(self.heap) > 0 else None
+    
     def _siftup(self, i):
         parent = (i - 1) // 2
         while i != 0 and self.heap[i] < self.heap[parent]:
@@ -25,4 +32,5 @@ class heap:
             i = smallest
             left = 2*i+1
             right = 2*i+2
+    
             

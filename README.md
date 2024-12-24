@@ -8,8 +8,17 @@
 * update - O(log n) if we have the index, else O(n)
 * build - O(n)
 
+### Common Operations of `heapq` object
+* `heapq.heapify(data)` - O(n)
+* `heapq.heappush(data, x)` - O(log n)
+* `heapq.heappop(data, x)` - O(log n)
+* `heapq.heapushpop(data, x)` - O(log n)
+* `heapq.nsmallest(k, data)` - O(n log k)
+* `heapq.nlargest   (k, data)` - O(n log k)
+
+
 ### Binary Heap
-Typically represented as an array compared to an actual tree with nodes
+Typically represented as an array
 1. Complete binary tree
     * Every level is completely filled, with the exception of the last row, which is filled from left to right
 2. Heap property
