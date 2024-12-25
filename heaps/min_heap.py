@@ -1,36 +1,33 @@
-class heap:
-    def __init__(self):
-        self.heap = []
-    
-    def _insert(self, element):
-        self.heap.append(element)
-        self._siftup(len(self.heap)-1)
-    
-    def _get_min(self):
-        return self.heap[0] if len(self.heap) > 0 else None
-    
-    def _siftup(self, i):
-        parent = (i - 1) // 2
-        while i != 0 and self.heap[i] < self.heap[parent]:
-            self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]
-            i = parent
-            parent = (i - 1) // 2
-    
-    def _siftdown(self, i):
-        left = 2*i+1
-        right = 2*i+2
-        while (
-            left < len(self.heap) and self.heap[i] > self.heap[left] or
-            right < self.heap and self.heap[i] > self.heap[right]
-        ):
-            if right >= len(self.heap) or self.heap[left] < self.heap[right]:
-                smallest = left
-            else:
-                smallest = right
+import heapq # min heap by default
 
-            self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]
-            i = smallest
-            left = 2*i+1
-            right = 2*i+2
-    
-            
+# creating a heap
+data = [5, 1, 7, 3, 8]
+heapq.heapify(data)
+print(data)
+
+
+# adding an element
+print("\nAdding an element: 2")
+print("before:", data)
+heapq.heappush(data, 2)
+print("after:", data)
+
+
+# removing the smallest element
+print("\nRemoving the smallest element")
+smallest = heapq.heappop(data)
+print("smallest:", smallest)
+print("data:", data)
+
+# push and pop in one operation
+print("\nPushing and popping in one operation")
+data = [2, 3, 7, 5, 8]
+smallest = heapq.heappushpop(data, 4)
+print(smallest)  # Output: 2
+print(data)      # Output: [3, 4, 7, 5, 8]
+
+# n Smallest/largest elements in the iterable
+smallest_2 = heapq.nsmallest(2, data)
+largest_2 = heapq.nlargest(2, data)
+print("\n2 Smallest elements in data:", smallest_2)
+print("2 largest elements in data:", largest_2)

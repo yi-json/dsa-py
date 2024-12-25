@@ -2,6 +2,10 @@ import heapq
 from typing import List
 
 class KthLargest:
+    """
+    by removing elements until there are k in total, the first
+    element in the heap will be the kth-largest
+    """
 
     def __init__(self, k: int, nums: List[int]):
         self.k = k

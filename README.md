@@ -14,7 +14,7 @@
 * `heapq.heappop(data, x)` - O(log n)
 * `heapq.heapushpop(data, x)` - O(log n)
 * `heapq.nsmallest(k, data)` - O(n log k)
-* `heapq.nlargest   (k, data)` - O(n log k)
+* `heapq.nlargest(k, data)` - O(n log k)
 
 
 ### Binary Heap
