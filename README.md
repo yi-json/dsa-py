@@ -9,12 +9,12 @@
 * build - O(n)
 
 ### Common Operations of `heapq` object
-* `heapq.heapify(data)` - O(n)
-* `heapq.heappush(data, x)` - O(log n)
-* `heapq.heappop(data, x)` - O(log n)
-* `heapq.heapushpop(data, x)` - O(log n)
-* `heapq.nsmallest(k, data)` - O(n log k)
-* `heapq.nlargest(k, data)` - O(n log k)
+* `heapify(data)` - O(n)
+* `heappush(data, x)` - O(log n)
+* `heappop(data)` - O(log n)
+* `heapushpop(data, x)` - O(log n)
+* `nsmallest(k, data)` - O(n log k)
+* `nlargest(k, data)` - O(n log k)
 
 
 ### Binary Heap
