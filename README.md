@@ -16,11 +16,18 @@ Let `l` be a list and `k` be an integer
 * `l[:k]` = start at index `k` and go to the end
 * `l[-k:]` = start from the `k`-th to last element and go to the end
 
+### Iterating a list backwards
+```py
+n = len(nums)
+for i in range(n - 1, -1, -1):
+    print(nums[i])
+```
+
 ## Lambda Functions
 ### Using a lambda function on `Counter` object, sorting based on frequency in descending order
 ```py
     cnt = Counter(nums)
-    sorted_cnt = sorted(cnt.items(), key=lambda x : x[1], reverse=True)
+    sorted_cnt = sorted(cnt.items(), key=lambda x : x[1], reverse=True) 
 ```
 
 ## Trees
@@ -46,6 +53,24 @@ def lca(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
     if left and right:
         return root
     return left or right
+```
+
+### Binary Tree Implementation
+```py
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = self.right = None
+```
+
+### N-ary Tree Implementation
+```py
+class Node:
+    def __init__(self, val: Optional[int] = None, children: Optional[List['Node']] = None):
+        if children is None:
+            children = []
+        self.val = val
+        self.children = children
 ```
 
 ## Heaps/Priority Queues
