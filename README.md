@@ -32,7 +32,8 @@ for i in range(n - 1, -1, -1):
 
 ## Trees
 ### Common Terminology
-* rank = position in an in-order traversal
+* rank - position in an in-order traversal
+* diameter - length of the longest path between any two nodes in a tree. may or may not pass through the root.
 
 ### Lowest Common Ancestor
 Defined between two nodes, `p` and `q`, as the lowest node in `T` that has both `p` and `q` as descendants
@@ -71,6 +72,32 @@ class Node:
             children = []
         self.val = val
         self.children = children
+```
+
+### BFS Template - O(n)
+```py
+from typing import Optional, List
+from collections import deque
+
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+        q = deque([root])
+        ans = []
+        while q:
+            level = []
+            for i in range(len(q)):
+                current = q.popleft()
+                level.append(current.val)
+                if current.left:
+                    q.append(current.left)
+                
+                if current.right:
+                    q.append(current.right)
+    
+            ans.append(level)
+        return ans
 ```
 
 ## Heaps/Priority Queues
@@ -129,6 +156,13 @@ Typically used to solve problems that are "find `k` something" such as
 
 1. Select a pivot and form partitions
 2. Run the partitioning algorithm only on the side that contains our "top" k-th element
+
+## Bit Manipulation
+
+### XOR Operator - `^`
+* Any number XORed with itself cancels out
+    * Useful for this problem: [Single Number](https://leetcode.com/problems/single-number/)
+* Order of operations does not matter, meaning:
 
 
 ## Miscellaneous
