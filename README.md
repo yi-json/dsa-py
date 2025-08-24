@@ -30,6 +30,53 @@ for i in range(n - 1, -1, -1):
     sorted_cnt = sorted(cnt.items(), key=lambda x : x[1], reverse=True) 
 ```
 
+## Queues/Deques
+```py
+# Create a deque
+dq = deque([1, 2, 3])  # Initialize with a list
+dq = deque()  # Create an empty deque
+
+dq.append(4)  # deque becomes [1, 2, 3, 4]
+dq.appendleft(0)  # deque becomes [0, 1, 2, 3, 4]
+
+# Remove from the right (end)
+dq.pop()  # Removes 4; deque becomes [0, 1, 2, 3]
+
+# Remove from the left (front)
+dq.popleft()  # Removes 0; deque becomes [1, 2, 3]
+
+front = dq[0]  # Access the first element (1)
+end = dq[-1]   # Access the last element (3)
+```
+
+
+## Stacks
+```py
+stack = []
+stack.append(element)
+
+# Removes and returns top element
+top = stack.pop()
+
+# Accesses the top element without popping it
+top = stack[-1]
+
+# checking if stack is empty
+if not stack:
+	...
+```
+
+
+## Binary Search
+### `bisect_right(sorted_list, x)`
+Gives you the index where `x` would be inserted, to the right of any equal elements
+
+Suppose we work with tuples:
+- `bisect_right(history, (0, 0))` -> Gives the first `(0, ...)` value
+- `bisect_right(history, (0, float('inf')))` -> Gives the last `(0, ...)` value
+
+
+
 ## Trees
 ### Common Terminology
 * rank - position in an in-order traversal
