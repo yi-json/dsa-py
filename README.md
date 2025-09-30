@@ -78,6 +78,15 @@ Suppose we work with tuples:
 
 
 ## Trees
+### Implementation
+```py
+class TreeNode:
+    def __init__(self, val=val, left=left, right=right):
+        self.val = val
+        self.left = left
+        self.right = right
+```
+
 ### Common Terminology
 * rank - position in an in-order traversal
 * diameter - length of the longest path between any two nodes in a tree. may or may not pass through the root.
