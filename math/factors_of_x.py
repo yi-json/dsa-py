@@ -1,5 +1,3 @@
-
-
 def factors(n):
     """
     given a number n, return a list of all the integer factors of n

@@ -9,8 +9,10 @@ We denote a string as `s`
     * replaces the first `k` instances of `str2` as `str1`
     * Note: Since Python strings are immutable, we can delete substrings by doing `s.replace(str1, "", n)`
 
-## Lists
+## Lists/Arrays
 Let `l` be a list and `k` be an integer
+* Number of subsequences: `2^n`
+* Number of sub-arrays: `n^2`
 
 ### Slicing
 * `l[:k]` = start at index `k` and go to the end
@@ -90,6 +92,8 @@ class TreeNode:
 ### Common Terminology
 * rank - position in an in-order traversal
 * diameter - length of the longest path between any two nodes in a tree. may or may not pass through the root.
+* depth - distance from the node to the root node
+    * Generally, `depth(node) = depth(parent) + 1`
 
 ### Lowest Common Ancestor
 Defined between two nodes, `p` and `q`, as the lowest node in `T` that has both `p` and `q` as descendants
@@ -219,6 +223,13 @@ Typically used to solve problems that are "find `k` something" such as
 * Any number XORed with itself cancels out
     * Useful for this problem: [Single Number](https://leetcode.com/problems/single-number/)
 * Order of operations does not matter, meaning:
+
+
+## Math
+* Prime numbers
+    * A positive integer > 1 that has exactly two distinct divisors: 1 and itself
+    * `1` is **not** a prime number
+    * Any multiple of a prime number is not itself prime
 
 
 ## Miscellaneous
