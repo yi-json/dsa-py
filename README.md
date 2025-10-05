@@ -8,6 +8,18 @@ We denote a string as `s`
 * `s.replace(str1, str2, k)` - O(n*k) or O(n) if k is omitted
     * replaces the first `k` instances of `str2` as `str1`
     * Note: Since Python strings are immutable, we can delete substrings by doing `s.replace(str1, "", n)`
+* `s[i].isdigit()` - Checks if the string at index i is an integer
+
+### Converting str to int
+If you're iterating a string and you want to extract an integer, but the integer could possibly span more than 1 digit, you can do so by:
+```py
+curr_num = 0
+s = "123"
+
+for ch in s:
+    if ch.isdigit():
+        curr_num = curr_num * 10 + int(ch)
+```
 
 ## Lists/Arrays
 Let `l` be a list and `k` be an integer
