@@ -65,6 +65,14 @@ end = dq[-1]   # Access the last element (3)
 
 
 ## Stacks
+
+### How does one know if you're encountering a stack problem?
+1. Dependency on most recent elements: if a problem requires reasoning about the most recent item that satisfies some condition
+    * Ex: Next Greater Element, Valid Parentheses (need next unmatched open bracket), Daily Temperatures (next warmer day)
+2. Look for nested or paired structure (`{`, `[`, `(`)
+3. Look for monotonic relationships: maintaining a running maximum, minimum, or any order-based property
+    * Maintain a **monotonic stack** - one that is always increasing or decreasing
+
 ```py
 stack = []
 stack.append(element)
@@ -79,6 +87,11 @@ top = stack[-1]
 if not stack:
 	...
 ```
+
+An algorithm done using stacks can also be done via recursion.
+Use the following pattern:
+* When you push something -> recursive call
+* When you pop on something -> recursive return
 
 
 ## Binary Search
@@ -242,7 +255,13 @@ Typically used to solve problems that are "find `k` something" such as
     * A positive integer > 1 that has exactly two distinct divisors: 1 and itself
     * `1` is **not** a prime number
     * Any multiple of a prime number is not itself prime
-
+    * `gcd(a, b) == 1`
+        * code to find `gcd(a, b)` manually found in `/math/gcd.py`
+* Least Common Multiple: Smallest positive integer that is a multiple of both `a` and `b`
+    * Multiples of 4 → 4, 8, 12, 16, 20, 24, ...
+    * Multiples of 6 → 6, 12, 18, 24, 30, ...
+    * The smallest common multiple is 12 → so `LCM(4, 6) = 12`.
+    * Formula: `lcm(a, b) = a*b / gcd(a, b)`
 
 ## Miscellaneous
 
