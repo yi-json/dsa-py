@@ -185,6 +185,58 @@ class Solution:
         return ans
 ```
 
+### Union Find
+Union Find is essentially a **Forest of Trees** and we perform either **Union by Rank (height)** or **Union by Size (# of nodes)**
+* For two given nodes, `u` and `v`, when we perform the union of these 2 components, the component whose parent has the larger size becomes the parent of the other node.
+
+Application of Union Find:
+* Count number of connected components
+* Cycle detection
+    * If calling `union(u, v)`returns `False`, then `u` and `v` were already connected prior -> cycle detection
+
+Time Complexity = `O(α(n)) ~= O(1)` due to path compression and by doing union by rank/size
+    * This is also known as **inverse Ackermann time**
+Space Complexity = `O(n)`
+
+**Union by Size Implementation**
+```py
+class UnionFind:
+    
+    def __init__(self, n: int):
+        self.parent = [i for i in range(n)]
+        self.size = [1] * n
+        self.num_components = n
+
+    def find(self, x: int) -> int:
+        # find the root of x
+        if x != self.parent[x]:
+            # path compression
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+        
+    def isSameComponent(self, x: int, y: int) -> bool:
+        return self.find(x) == self.find(y)
+
+    def union(self, x: int, y: int) -> bool:
+        # connect x and y
+        root_x, root_y = self.find(x), self.find(y)
+        if root_x != root_y:
+            if self.size[root_x] < self.size[root_y]:
+                self.parent[root_x] = root_y
+                self.size[root_y] += self.size[root_x]
+            else:
+                self.parent[root_y] = root_x
+                self.size[root_x] += self.size[root_y]
+            self.num_components -= 1
+            return True
+        # not same component
+        return False
+        
+
+    def getNumComponents(self) -> int:
+        return self.num_components
+```
+
 ## Graphs
 ### Topological Sort
 Time Complexity = Space Complexity = O(n + m)
