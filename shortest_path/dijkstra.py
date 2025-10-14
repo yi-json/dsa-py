@@ -14,13 +14,18 @@ src - the source vertex from which to start the algorithm, where (0 <= src < n).
 
 Note: If a vertex is unreachable from the source vertex, 
     the shortest path distance for the unreachable vertex should be -1.
+
+TC: O((n+m)log n)
+    * Each heappush/heappop costs O(log n) bc heap size is bounded by number of indices
+    * heappop happens up to O(n) times (once per vertex)
+    * heappush happens up to O(m) times (once per edge relaxation)
 """
 import heapq
 from typing import List
 
 def dijkstra(n: int, edges: List[List[int]], src: int) -> List[int]:
     G = {i: [] for i in range(n)}
-    for u, v, w in edges:
+    for u, v, w in edges: # O(n + m)
         G[u].append((v, w))
 
     heap = [(0, src)]

@@ -1,30 +1,41 @@
+"""
+TC = SC = O(n + m)
+"""
+
 from typing import List
 
 
-def findOrder(numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-    adj = [[] for i in range(numCourses)]
-    in_degree = [0] * numCourses
-    for a, b in prerequisites:
-        in_degree[a] += 1
-        adj[b].append(a)
-    output = []
+def topologicalSort(n: int, edges: List[List[int]]) -> List[int]:
+    adj = {i: [] for i in range(n)}
+    for src, dst in edges:
+        adj[src].append(dst)
 
+    top_sort = []
+    visited = set()
+    visiting = set() # nodes being visited in the curr dfs call (used to detect cycles)
+    
     def dfs(node):
-        output.append(node)
-        in_degree[node] -= 1
-        for num in adj[node]:
-            in_degree[num] -= 1
-            if in_degree[num] == 0:
-                dfs(num)
+        if node in visited:
+            return True
+        if node in visiting:
+            return False
+
+        visiting.add(node)
+        for nei in adj[node]:
+            if not dfs(nei):
+                return False
+        visiting.remove(node)
+        visited.add(node) # node has been completely visited
+        top_sort.append(node)
+        return True
+
+    for i in range(n):
+        if not dfs(i):
+            return [] # cycle detected
+    top_sort.reverse()
+    return top_sort
     
-    for i in range(numCourses):
-        if in_degree[i] == 0:
-            dfs(i)
-    
-    return output if len(output) == numCourses else []
-    
-# Test case 2: Multiple prerequisites
-numCourses = 4
-prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]
-result = findOrder(numCourses, prerequisites)
-print(f"Test 2: {result} (Expected: [0, 1, 2, 3] or [0, 2, 1, 3])")
+
+n = 3
+edges = [[0, 2], [1, 2]]
+print(topologicalSort(n, edges))

@@ -185,6 +185,58 @@ class Solution:
         return ans
 ```
 
+## Graphs
+### Topological Sort
+Time Complexity = Space Complexity = O(n + m)
+```py
+def topologicalSort(n: int, edges: List[List[int]]) -> List[int]:
+    adj = {i: [] for i in range(n)}
+    for src, dst in edges:
+        adj[src].append(dst)
+
+    top_sort = []
+    visited = set()
+    visiting = set() # nodes being visited in the curr dfs call (used to detect cycles)
+    
+    def dfs(node):
+        if node in visited:
+            return True
+        if node in visiting:
+            return False
+
+        visiting.add(node)
+        for nei in adj[node]:
+            if not dfs(nei):
+                return False
+        visiting.remove(node)
+        visited.add(node) # node has been completely visited
+        top_sort.append(node)
+        return True
+
+    for i in range(n):
+        if not dfs(i):
+            return [] # cycle detected
+    top_sort.reverse()
+    return top_sort
+```
+
+How the DFS works
+* Given some `src` node, we want to visit every descending node of that `src` BEFORE visiting the `src` node
+    * Why? Take this ex:
+        ```
+        a -> b -> c
+          -> d
+        ```
+    * We want to visit both `(b, c)` and `(d)` before `a`
+
+Why `reverse()` at the end?
+    * We append node after exploring all its neighbors, which is post-order
+    * Ex: `edges = [[0, 1], [1, 2]]`
+        * The graph is 0 → 1 → 2
+        * DFS appends in the order `[2, 1, 0]`
+        * You need to `reverse()` it to get `[0, 1, 2]`
+
+
 ## Heaps/Priority Queues
 ### Common Operations + Time Complexities
 * insert - O(log n)
