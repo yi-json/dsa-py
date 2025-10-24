@@ -10,6 +10,15 @@ We denote a string as `s`
     * Note: Since Python strings are immutable, we can delete substrings by doing `s.replace(str1, "", n)`
 * `s[i].isdigit()` - Checks if the string at index i is an integer
 
+### Making a string frequency array using `ord()`
+```py
+s = "jaydenlimisthebestprogrammer"
+freq = [0] * 26
+for ch in s:
+    idx = ord(ch) - ord('a')
+    freq[idx] += 1
+```
+
 ### Converting str to int
 If you're iterating a string and you want to extract an integer, but the integer could possibly span more than 1 digit, you can do so by:
 ```py
