@@ -29,7 +29,7 @@ def bellman_ford(n: int, edges: List[List[int]], src: int) -> List[int]:
     dist = [math.inf] * n
     dist[src] = 0
 
-    # Relax all edges n - 1 times
+    # Relax all edges |V| - 1 times
     for _ in range(n - 1):
         updated = False
         for u, v, w in edges:
