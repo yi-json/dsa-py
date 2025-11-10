@@ -30,6 +30,10 @@ for ch in s:
         curr_num = curr_num * 10 + int(ch)
 ```
 
+### KMP Algorithm
+1. Longest Prefix Suffix (lps)
+    * `lps[i] = longest prefix that's also a suffix, but not including the entire string from s[:i]`
+
 ## Lists/Arrays
 Let `l` be a list and `k` be an integer
 * Number of subsequences: `2^n`
@@ -194,6 +198,10 @@ class Solution:
         return ans
 ```
 
+### Morris In-Order Traversal
+An in-order traversal that's memory efficient - from O(h) to O(1)
+
+
 ### Union Find
 Union Find is essentially a **Forest of Trees** and we perform either **Union by Rank (height)** or **Union by Size (# of nodes)**
 * For two given nodes, `u` and `v`, when we perform the union of these 2 components, the component whose parent has the larger size becomes the parent of the other node.
@@ -248,38 +256,14 @@ class UnionFind:
 
 ## Graphs
 ### Topological Sort
+Given a DAG, G = (V, E)
+`toposort(G)` returns a linear ordering of all vertices such that for every (u, v) in E,
+vertex u appears **before** v in the ordering
+
+Once you reach v, all of its predecessors have already been processed
+
 Time Complexity = Space Complexity = O(n + m)
-```py
-def topologicalSort(n: int, edges: List[List[int]]) -> List[int]:
-    adj = {i: [] for i in range(n)}
-    for src, dst in edges:
-        adj[src].append(dst)
 
-    top_sort = []
-    visited = set()
-    visiting = set() # nodes being visited in the curr dfs call (used to detect cycles)
-    
-    def dfs(node):
-        if node in visited:
-            return True
-        if node in visiting:
-            return False
-
-        visiting.add(node)
-        for nei in adj[node]:
-            if not dfs(nei):
-                return False
-        visiting.remove(node)
-        visited.add(node) # node has been completely visited
-        top_sort.append(node)
-        return True
-
-    for i in range(n):
-        if not dfs(i):
-            return [] # cycle detected
-    top_sort.reverse()
-    return top_sort
-```
 
 How the DFS works
 * Given some `src` node, we want to visit every descending node of that `src` BEFORE visiting the `src` node
@@ -348,8 +332,16 @@ For a given node at index i, we can find...
 Given a weighted, directed graph, and a starting vertex, 
 return the shortest distance from the starting vertex to every vertex in the graph.
 
-Time complexity: `O((n+m)log n)`, where n = # of nodes, m = # of edges
-Space Complexity: `O(n + m)` 
+Time complexity: `O(E log V)`, where V = # of nodes, E = # of edges
+Space Complexity: `O(E + V)` 
+
+### Bellman Ford Algorithm
+Given a weighted, directed graph (which may contain negative weights),
+and a starting vertex, return the shortest distance from the starting 
+vertex to every vertex in the graph.
+
+Time complexity: `O(EV)`, where V = # of nodes, E = # of edges
+Space Complexity: `O(E + V)` 
 
 Inputs:
 * `n` - the number of vertices in the graph, where (2 <= n <= 100). Each vertex is labeled from 0 to n - 1
